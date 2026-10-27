@@ -336,6 +336,18 @@ a:hover { color: var(--accent-600); }
   background-color: var(--bg-primary);
 }
 
+@media (max-width: 767px) {
+  .sidebar.desktop-sidebar {
+    display: none !important;
+  }
+  .admin-app-main {
+    margin-left: 0 !important;
+    padding-top: 68px !important;
+    padding-bottom: calc(var(--mobile-nav-height) + 16px) !important;
+  }
+}
+
+
 /* Mobile-first layout for Citizen, Employee, Parshad (Now fully responsive on Desktop too!) */
 .mobile-app-main {
   flex: 1;

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { getSharedLiveComplaints, fetchSharedLiveComplaints, subscribeToLiveComplaints } from '@/lib/citizenService';
 import {
-  LayoutDashboard, ClipboardList, Users,
+  LayoutDashboard, ClipboardList, Building2,
   MapPin
 } from 'lucide-react';
 
@@ -17,12 +17,12 @@ export default function ParshadNavTabs() {
     function updateCount(live) {
       setComplaintCount(live ? live.length : 0);
     }
-    updateCount(getSharedLiveComplaints(24));
-    fetchSharedLiveComplaints(24).then(fresh => {
+    updateCount(getSharedLiveComplaints(59));
+    fetchSharedLiveComplaints(59).then(fresh => {
       if (fresh) updateCount(fresh);
     });
     const unsubscribe = subscribeToLiveComplaints((all) => {
-      const cleanW = '24';
+      const cleanW = '59';
       const filtered = (all || []).filter(c => String(c.ward || c.wardNumber || '').replace(/\D/g, '') === cleanW);
       updateCount(filtered);
     });
@@ -30,10 +30,10 @@ export default function ParshadNavTabs() {
   }, []);
 
   const TABS = [
-    { href: '/parshad',            label: 'मुख्य अवलोकन',       sub: 'Overview',                                         icon: LayoutDashboard },
-    { href: '/parshad/complaints', label: 'वार्ड शिकायतें',      sub: `${complaintCount} शिकायतें`,                       icon: ClipboardList, badge: String(complaintCount) },
-    { href: '/parshad/employees',  label: 'कर्मचारी व हाजिरी',    sub: '6 फील्ड कर्मी',                                    icon: Users,         badge: '6' },
-    { href: '/parshad/areas',      label: 'वार्ड क्षेत्र व बीट', sub: '5 प्रमुख बीट',                                    icon: MapPin,        badge: '5' },
+    { href: '/parshad',             label: 'मुख्य अवलोकन',       sub: 'Ward 59 Overview',    icon: LayoutDashboard },
+    { href: '/parshad/complaints',  label: 'वार्ड शिकायतें',      sub: `${complaintCount} शिकायतें`, icon: ClipboardList, badge: String(complaintCount) },
+    { href: '/parshad/departments', label: 'विभाग कार्य डाटा',    sub: '5 विभाग स्थिति',       icon: Building2, badge: '5' },
+    { href: '/parshad/areas',       label: 'वार्ड 59 क्षेत्र',    sub: '5 प्रमुख बीट',        icon: MapPin, badge: '5' },
   ];
 
   return (

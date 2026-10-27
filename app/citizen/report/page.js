@@ -34,7 +34,7 @@ export default function ReportPage() {
 
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [ward, setWard]         = useState('24');
+  const [ward, setWard]         = useState('59');
   const [description, setDesc]  = useState('');
   const [photo, setPhoto]       = useState(null);
   const [photoPreview, setPhotoPreview] = useState(null);
@@ -288,59 +288,7 @@ export default function ReportPage() {
           ))}
         </div>
 
-        {/* Sabhapati Direct Meeting Quick Banner */}
-        {step === 1 && (
-          <div style={{
-            background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-            border: '1.5px solid #93c5fd',
-            borderRadius: 14,
-            padding: '12px 16px',
-            marginBottom: 16,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 12,
-            flexWrap: 'wrap',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{
-                width: 36, height: 36,
-                borderRadius: 10,
-                background: 'linear-gradient(135deg, #1e3a8a, #1e40af)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}>
-                <Crown size={18} color="#f59e0b" />
-              </div>
-              <div>
-                <div style={{ fontWeight: 800, color: '#1e3a8a', fontSize: '0.88rem' }}>
-                  क्या आप सीधे सभापति श्री अनिल जी ईनाणी से मिलना चाहते हैं?
-                </div>
-                <div style={{ fontSize: '0.74rem', color: '#475569' }}>
-                  व्यक्तिगत जनसुनवाई अथवा अति आवश्यक प्रकरण हेतु डिजिटल अपॉइंटमेंट टोकन प्राप्त करें
-                </div>
-              </div>
-            </div>
-            <Link
-              href="/citizen/appointment"
-              style={{
-                background: '#1e3a8a',
-                color: '#ffffff',
-                padding: '7px 16px',
-                borderRadius: 8,
-                fontSize: '0.78rem',
-                fontWeight: 800,
-                textDecoration: 'none',
-                whiteSpace: 'nowrap',
-                boxShadow: '0 2px 6px rgba(30, 58, 138, 0.2)',
-              }}
-            >
-              सभापति से भेंट बुक करें →
-            </Link>
-          </div>
-        )}
+
 
         {/* STEP 1: Categories Responsive Grid */}
         {step === 1 && (
@@ -428,30 +376,23 @@ export default function ReportPage() {
                   </div>
 
                   <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <div style={{ flex: '1 1 auto', minWidth: 0 }}>
-                      <select
-                        id="ward-select"
-                        className="form-select"
-                        value={ward}
-                        onChange={e => setWard(e.target.value)}
-                        style={{
-                          width: '100%',
-                          padding: '10px 12px',
-                          fontSize: '0.9rem',
-                          fontWeight: 700,
-                          color: '#1e3a8a',
-                          background: '#ffffff',
-                          borderRadius: 8,
-                          border: '1.5px solid #cbd5e1',
-                          outline: 'none',
-                        }}
-                      >
-                        {CHITTORGARH_60_WARDS.map(w => (
-                          <option key={w.num} value={w.num}>
-                            वार्ड {w.num} — {w.councillor} ({w.party})
-                          </option>
-                        ))}
-                      </select>
+                    <div style={{
+                      flex: '1 1 auto',
+                      padding: '10px 14px',
+                      background: '#f8fafc',
+                      border: '1.5px solid #cbd5e1',
+                      borderRadius: 8,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      fontSize: '0.9rem',
+                      fontWeight: 700,
+                      color: '#1e3a8a',
+                    }}>
+                      <span>वार्ड संख्या 59 (चित्तौड़गढ़)</span>
+                      <span style={{ fontSize: '0.75rem', color: '#16a34a', background: '#dcfce7', padding: '2px 8px', borderRadius: 9999, fontWeight: 700 }}>
+                        वार्ड 59 ई-सेवा पोर्टल ✓
+                      </span>
                     </div>
 
                     <button
@@ -481,60 +422,48 @@ export default function ReportPage() {
                     </button>
                   </div>
 
-                  {/* Ward Councillor Info Banner */}
-                  {(() => {
-                    const currentWardData = CHITTORGARH_60_WARDS.find(w => w.num === parseInt(ward, 10)) || CHITTORGARH_60_WARDS[23];
-                    const isBjp = currentWardData.partyCode === 'bjp';
-                    const isInc = currentWardData.partyCode === 'inc';
-                    const pBg = isBjp ? '#fff7ed' : isInc ? '#eff6ff' : '#faf5ff';
-                    const pBorder = isBjp ? '#fed7aa' : isInc ? '#bfdbfe' : '#e9d5ff';
-                    const pText = isBjp ? '#c2410c' : isInc ? '#1e40af' : '#6b21a8';
-                    const pBadge = isBjp ? '#ffedd5' : isInc ? '#dbeafe' : '#f3e8ff';
-
-                    return (
-                      <div style={{
-                        marginTop: 8,
-                        background: pBg,
-                        border: `1.5px solid ${pBorder}`,
-                        borderLeft: `4px solid ${pText}`,
-                        borderRadius: 8,
-                        padding: '8px 12px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: 10
-                      }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <span style={{ fontSize: '1.1rem' }}>🏛️</span>
-                          <div>
-                            <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600 }}>
-                              वार्ड {currentWardData.num} के निर्वाचित पार्षद:
-                            </div>
-                            <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0f172a' }}>
-                              {currentWardData.isChairman ? `${currentWardData.councillor} (सभापति)` : currentWardData.isViceChairman ? `${currentWardData.councillor} (उपसभापति)` : currentWardData.councillor}
-                            </div>
-                          </div>
+                  {/* Ward 59 Councillor Info Banner */}
+                  <div style={{
+                    marginTop: 8,
+                    background: '#faf5ff',
+                    border: '1.5px solid #e9d5ff',
+                    borderLeft: '4px solid #7c3aed',
+                    borderRadius: 8,
+                    padding: '8px 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: 10
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ fontSize: '1.1rem' }}>🏛️</span>
+                      <div>
+                        <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600 }}>
+                          वार्ड 59 निर्वाचित पार्षद:
                         </div>
-                        <div style={{ textAlign: 'right' }}>
-                          <span style={{
-                            fontSize: '0.72rem',
-                            fontWeight: 700,
-                            padding: '2px 8px',
-                            borderRadius: 9999,
-                            background: pBadge,
-                            color: pText,
-                            border: `1px solid ${pBorder}`,
-                            display: 'inline-block'
-                          }}>
-                            {currentWardData.party}
-                          </span>
-                          <div style={{ fontSize: '0.65rem', color: '#16a34a', fontWeight: 600, marginTop: 2 }}>
-                            सीधी वार्ड मॉनिटरिंग ✓
-                          </div>
+                        <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0f172a' }}>
+                          श्री प्रमोद राजपुरोहित
                         </div>
                       </div>
-                    );
-                  })()}
+                    </div>
+                    <div style={{ textAlign: 'right' }}>
+                      <span style={{
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        padding: '2px 8px',
+                        borderRadius: 9999,
+                        background: '#f3e8ff',
+                        color: '#6b21a8',
+                        border: '1px solid #e9d5ff',
+                        display: 'inline-block'
+                      }}>
+                        निर्दलीय
+                      </span>
+                      <div style={{ fontSize: '0.65rem', color: '#16a34a', fontWeight: 600, marginTop: 2 }}>
+                        सीधी वार्ड मॉनिटरिंग ✓
+                      </div>
+                    </div>
+                  </div>
                   {address && <p className="form-hint" style={{ color: '#15803d', fontWeight: 600, marginTop: 6, display: 'flex', alignItems: 'center', gap: 4 }}>📍 {address}</p>}
                 </div>
 

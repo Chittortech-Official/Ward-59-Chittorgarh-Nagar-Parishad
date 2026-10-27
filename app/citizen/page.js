@@ -232,69 +232,6 @@ export default function CitizenPage() {
         </Link>
       </div>
 
-      {/* 2.5 Sabhapati Meeting Booking Banner */}
-      <Link
-        href="/citizen/appointment"
-        id="sabhapati-appointment-btn"
-        className="card"
-        style={{
-          background: '#ffffff',
-          borderRadius: 12,
-          padding: '11px 14px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 10,
-          textDecoration: 'none',
-          marginBottom: 14,
-          border: '1.5px solid #bfdbfe',
-          boxShadow: '0 2px 6px rgba(30, 58, 138, 0.05)',
-          transition: 'all 0.15s ease',
-        }}
-        onMouseEnter={e => { e.currentTarget.style.borderColor = '#2563eb'; e.currentTarget.style.background = '#f0f9ff'; }}
-        onMouseLeave={e => { e.currentTarget.style.borderColor = '#bfdbfe'; e.currentTarget.style.background = '#ffffff'; }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
-          <div style={{
-            width: 36,
-            height: 36,
-            borderRadius: 9,
-            background: '#eff6ff',
-            color: '#1e40af',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-            border: '1px solid #bfdbfe',
-          }}>
-            <Crown size={18} color="#1e3a8a" />
-          </div>
-          <div style={{ minWidth: 0 }}>
-            <div style={{ fontWeight: 800, fontSize: '0.88rem', color: '#1e3a8a', lineHeight: 1.2 }}>
-              सभापति जी से भेंट
-            </div>
-            <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              श्री अनिल जी ईनाणी (जनसुनवाई)
-            </div>
-          </div>
-        </div>
-
-        <span style={{
-          background: '#1e3a8a',
-          color: '#ffffff',
-          padding: '6px 12px',
-          borderRadius: 8,
-          fontSize: '0.74rem',
-          fontWeight: 700,
-          whiteSpace: 'nowrap',
-          flexShrink: 0,
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 4,
-        }}>
-          टोकन लें <ArrowRight size={13} />
-        </span>
-      </Link>
 
       {/* 3. Main Action Touch Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
@@ -506,41 +443,28 @@ export default function CitizenPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid #f1f5f9' }}>
               <MapPin size={18} color="#7c3aed" />
               <h3 style={{ fontSize: '0.92rem', color: '#1e3a8a', margin: 0, fontWeight: 700 }}>
-                वार्ड {citizen.ward} स्थानीय सेवा केंद्र
+                वार्ड 59 स्थानीय जन-प्रतिनिधि एवं सेवा केंद्र
               </h3>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontSize: '0.8125rem' }}>
-              {(() => {
-                const wNum = parseInt(String(citizen.ward || '24').replace(/\D/g, ''), 10) || 24;
-                const councillorData = CHITTORGARH_60_WARDS.find(w => w.num === wNum) || CHITTORGARH_60_WARDS[23];
-                const isBjp = councillorData.partyCode === 'bjp';
-                const isInc = councillorData.partyCode === 'inc';
-                const pColor = isBjp ? '#c2410c' : isInc ? '#1e40af' : '#6b21a8';
-                const pBg = isBjp ? '#ffedd5' : isInc ? '#dbeafe' : '#f3e8ff';
-
-                return (
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <div style={{ fontSize: '0.7rem', color: '#64748b' }}>वार्ड पार्षद प्रतिनिधि (वार्ड {councillorData.num})</div>
-                      <strong style={{ color: '#0f172a' }}>
-                        {councillorData.isChairman ? `${councillorData.councillor} (सभापति)` : councillorData.isViceChairman ? `${councillorData.councillor} (उपसभापति)` : councillorData.councillor}
-                      </strong>
-                    </div>
-                    <span style={{ fontSize: '0.72rem', background: pBg, color: pColor, padding: '3px 8px', borderRadius: 999, fontWeight: 700 }}>
-                      {councillorData.party}
-                    </span>
-                  </div>
-                );
-              })()}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b' }}>वार्ड पार्षद प्रतिनिधि (वार्ड 59)</div>
+                  <strong style={{ color: '#0f172a' }}>श्री प्रमोद राजपुरोहित</strong>
+                </div>
+                <span style={{ fontSize: '0.72rem', background: '#f3e8ff', color: '#6b21a8', padding: '3px 8px', borderRadius: 999, fontWeight: 700 }}>
+                  निर्दलीय
+                </span>
+              </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b' }}>वार्ड स्वच्छता बीट प्रभारी</div>
-                  <strong style={{ color: '#0f172a' }}>रमेश मीणा</strong>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b' }}>वार्ड जन-सुविधा केंद्र</div>
+                  <strong style={{ color: '#0f172a' }}>किला ढलान, वार्ड 59 कार्यालय</strong>
                 </div>
                 <span style={{ fontSize: '0.72rem', background: '#dcfce7', color: '#15803d', padding: '3px 8px', borderRadius: 999, fontWeight: 700 }}>
-                  उपस्थित ✓
+                  सक्रिय ✓
                 </span>
               </div>
             </div>

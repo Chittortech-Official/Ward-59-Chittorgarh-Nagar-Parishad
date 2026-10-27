@@ -12,8 +12,8 @@ const notoDevanagari = Noto_Sans_Devanagari({
 });
 
 export const metadata = {
-  title: 'Smart Chittorgarh | Nagar Parishad Digital Platform',
-  description: 'Digital municipal management platform for Chittorgarh Nagar Parishad — connecting citizens, employees, councillors, officers and the Chairman.',
+  title: 'वार्ड 59 - नगर परिषद चित्तौड़गढ़ | Ward 59 Portal',
+  description: 'वार्ड संख्या 59, नगर परिषद चित्तौड़गढ़ — नागरिक ई-सेवा एवं पार्षद प्रशासनिक पोर्टल (पार्षद: श्री प्रमोद राजपुरोहित)',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },

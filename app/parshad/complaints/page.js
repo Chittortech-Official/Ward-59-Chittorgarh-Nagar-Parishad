@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import DashboardShell from '@/components/DashboardShell';
-import ParshadNavTabs from '@/components/ParshadNavTabs';
 import StatusBadge from '@/components/StatusBadge';
 import { useAuth } from '@/lib/authContext';
 import { getSharedLiveComplaints, fetchSharedLiveComplaints, subscribeToLiveComplaints } from '@/lib/citizenService';
@@ -42,16 +41,16 @@ export default function ParshadComplaintsPage() {
     }
 
     // 1. Initial cached load
-    formatAndSet(getSharedLiveComplaints(24));
+    formatAndSet(getSharedLiveComplaints(59));
 
     // 2. Fresh live fetch from Supabase
-    fetchSharedLiveComplaints(24).then(fresh => {
+    fetchSharedLiveComplaints(59).then(fresh => {
       if (fresh) formatAndSet(fresh);
     });
 
     // 3. Live real-time subscription
     const unsubscribe = subscribeToLiveComplaints((all) => {
-      const cleanW = '24';
+      const cleanW = '59';
       const filtered = (all || []).filter(c => String(c.ward || c.wardNumber || '').replace(/\D/g, '') === cleanW);
       formatAndSet(filtered);
     });
@@ -73,22 +72,26 @@ export default function ParshadComplaintsPage() {
 
   return (
     <DashboardShell requiredRole="parshad">
-      {/* Parshad 5-Tab Navigation Bar */}
-      <ParshadNavTabs />
-
       {/* Header */}
-      <div style={{ marginBottom: 16 }}>
+      <div style={{
+        background: '#ffffff',
+        border: '1px solid #e2e8f0',
+        borderRadius: 14,
+        padding: '16px 20px',
+        marginBottom: 16,
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+      }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
           <div>
-            <h1 style={{ fontSize: '1.35rem', color: '#1e3a8a', marginBottom: 2, fontWeight: 800 }}>
-              वार्ड 24 — समस्त नागरिक शिकायतें ({allComplaints.length})
+            <h1 style={{ fontSize: '1.4rem', color: '#1e3a8a', marginBottom: 2, fontWeight: 800 }}>
+              वार्ड 59 — नागरिक शिकायतें ({allComplaints.length})
             </h1>
-            <p style={{ fontSize: '0.8125rem', color: '#64748b', margin: 0 }}>
-              किसी भी शिकायत पर क्लिक करके उसका पूरा विवरण, फोटो प्रमाण व रूटिंग स्थिति देखें
+            <p style={{ fontSize: '0.825rem', color: '#64748b', margin: 0 }}>
+              किसी भी शिकायत पर क्लिक करके उसका पूरा विवरण, फोटो प्रमाण व समाधान स्थिति देखें
             </p>
           </div>
-          <span className="badge badge-parshad" style={{ fontSize: '0.75rem', padding: '4px 12px' }}>
-            वार्ड 24
+          <span className="badge badge-parshad" style={{ fontSize: '0.78rem', padding: '5px 14px' }}>
+            वार्ड 59
           </span>
         </div>
       </div>

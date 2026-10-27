@@ -5,13 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/authContext';
 import ChittorgarhLogo from './ChittorgarhLogo';
-import { LogOut, Phone, Home, Plus, ClipboardList } from 'lucide-react';
+import { LogOut, Phone, Home, Plus, ClipboardList, Building2 } from 'lucide-react';
 
 const ROLE_CONFIG = {
   citizen:     { label: 'नागरिक',  badgeBg: '#e0f2fe', badgeText: '#0369a1', border: '#bae6fd' },
-  employee:    { label: 'कर्मचारी', badgeBg: '#dcfce7', badgeText: '#15803d', border: '#bbf7d0' },
-  parshad:     { label: 'पार्षद',   badgeBg: '#f3e8ff', badgeText: '#7e22ce', border: '#e9d5ff' },
-  chairman:    { label: 'सभापति (चेयरमैन)', badgeBg: '#fef3c7', badgeText: '#b45309', border: '#fde68a' },
+  parshad:     { label: 'वार्ड पार्षद', badgeBg: '#f3e8ff', badgeText: '#7e22ce', border: '#e9d5ff' },
 };
 
 export default function Navbar({ currentProfile, guestMode = false }) {
@@ -37,7 +35,7 @@ export default function Navbar({ currentProfile, guestMode = false }) {
           <div className="gov-topbar-left">
             <span>स्वायत्त शासन विभाग, राजस्थान सरकार</span>
             <span className="gov-sep">|</span>
-            <span className="gov-highlight">चित्तौड़गढ़ नगर परिषद</span>
+            <span className="gov-highlight">चित्तौड़गढ़ नगर परिषद — वार्ड 59</span>
           </div>
           <div className="gov-topbar-right">
             <a href="tel:181" className="gov-topbar-link">
@@ -73,6 +71,8 @@ export default function Navbar({ currentProfile, guestMode = false }) {
               </Link>
             </div>
           )}
+
+
         </div>
 
         <div className="navbar-right">

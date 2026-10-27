@@ -8,17 +8,13 @@ import { LogIn, Eye, EyeOff, Zap, Smartphone, Monitor, ArrowLeft } from 'lucide-
 import Link from 'next/link';
 
 const DEMO_LOGINS = [
-  { email: 'citizen@demo.in',  name: 'राजेश कुमार (नागरिक)',         role: 'नागरिक पोर्टल',            desc: 'शिकायत दर्ज व ट्रैकिंग', type: 'mobile', color: '#0284c7', bg: '#e0f2fe' },
-  { email: 'employee@demo.in', name: 'रमेश मीणा (सफाई कर्मचारी)',   role: 'कर्मचारी फील्ड पोर्टल',     desc: 'GPS हाजिरी व कार्य',      type: 'mobile', color: '#16a34a', bg: '#dcfce7' },
-  { email: 'parshad@demo.in',  name: 'श्रीमती कुसुम (पार्षद - वार्ड 24)', role: 'वार्ड पार्षद निगरानी पोर्टल', desc: 'वार्ड 24 शिकायत व टीम', type: 'mobile', color: '#7c3aed', bg: '#f3e8ff' },
-  { email: 'chairman@demo.in', name: 'श्री अनिल जी ईनाणी (सभापति)', role: 'सभापति / चेयरमैन कक्ष',     desc: 'जनता दरबार व नगर नियंत्रण', type: 'laptop', color: '#d97706', bg: '#fef3c7' },
+  { email: 'citizen@demo.in',  name: 'राजेश कुमार (नागरिक - वार्ड 59)', role: 'नागरिक पोर्टल', desc: 'शिकायत दर्ज व ट्रैकिंग', type: 'mobile', color: '#0284c7', bg: '#e0f2fe' },
+  { email: 'parshad@demo.in',  name: 'श्री प्रमोद राजपुरोहित (पार्षद - वार्ड 59)', role: 'वार्ड 59 पार्षद पोर्टल', desc: 'वार्ड 59 शिकायतें व विभाग संपर्क', type: 'desktop', color: '#7c3aed', bg: '#f3e8ff' },
 ];
 
 const ROLE_PATHS = {
   citizen: '/citizen',
-  employee: '/employee',
   parshad: '/parshad',
-  chairman: '/chairman',
 };
 
 export default function DemoLoginPage() {
@@ -56,8 +52,8 @@ export default function DemoLoginPage() {
       const citizenProf = {
         name: 'राजेश कुमार शर्मा',
         phone: '9829012345',
-        ward: '24',
-        mohalla: 'भारत माता चौक, मुख्य बाजार',
+        ward: '59',
+        mohalla: 'किला ढलान, वार्ड 59',
         pin: '1234',
         role: 'citizen',
       };
@@ -73,7 +69,7 @@ export default function DemoLoginPage() {
     }
   }
 
-  function handleResetWard24() {
+  function handleResetWard59() {
     if (typeof window === 'undefined') return;
     try {
       localStorage.removeItem('sc_citizen_complaints_9829012345');
@@ -81,18 +77,11 @@ export default function DemoLoginPage() {
       const rawShared = localStorage.getItem('sc_shared_live_complaints');
       if (rawShared) {
         const list = JSON.parse(rawShared);
-        const filtered = list.filter(c => String(c.ward || '').replace(/\D/g, '') !== '24');
+        const filtered = list.filter(c => String(c.ward || '').replace(/\D/g, '') !== '59');
         localStorage.setItem('sc_shared_live_complaints', JSON.stringify(filtered));
       }
 
-      const rawApt = localStorage.getItem('sc_sabhapati_appointments');
-      if (rawApt) {
-        const list = JSON.parse(rawApt);
-        const filtered = list.filter(a => String(a.wardNumber || '').replace(/\D/g, '') !== '24' && String(a.phonePrimary) !== '9829012345');
-        localStorage.setItem('sc_sabhapati_appointments', JSON.stringify(filtered));
-      }
-
-      setResetMsg('✅ वार्ड 24 का डेटा शून्य (0 शिकायतें, 0 अपॉइंटमेंट) कर दिया गया है! अब लाइव परीक्षण करें।');
+      setResetMsg('✅ वार्ड 59 का परीक्षण डेटा रीसेट कर दिया गया है!');
       setTimeout(() => setResetMsg(''), 5000);
     } catch (e) {
       console.error(e);

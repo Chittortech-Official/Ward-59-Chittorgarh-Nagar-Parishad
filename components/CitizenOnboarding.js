@@ -17,7 +17,7 @@ export default function CitizenOnboarding({ onComplete }) {
   // Registration fields
   const [fullName, setFullName] = useState('');
   const [mobile, setMobile] = useState('');
-  const [wardNum, setWardNum] = useState('24');
+  const [wardNum, setWardNum] = useState('59');
   const [pin, setPin] = useState('');
   
   // Lookup fields
@@ -148,7 +148,7 @@ export default function CitizenOnboarding({ onComplete }) {
                     नगर परिषद चित्तौड़गढ़
                   </h1>
                   <div style={{ fontSize: '0.82rem', color: '#16a34a', fontWeight: 700, marginTop: 2 }}>
-                    नागरिक ई-सेवा एवं जन-समाधान पोर्टल
+                    वार्ड संख्या 59 नागरिक ई-सेवा पोर्टल
                   </div>
                 </div>
               </div>
@@ -162,7 +162,7 @@ export default function CitizenOnboarding({ onComplete }) {
                 borderLeft: '3.5px solid #2563eb',
                 paddingLeft: 12
               }}>
-                वीर भूमि चित्तौड़गढ़ के समस्त <strong>60 वार्डों</strong> के नागरिकों के लिए पारदर्शी, त्वरित एवं जवाबदेह नगर पालिका सेवाएं। बिना कतार, बिना जटिलता — सीधे अपनी समस्या दर्ज करें और वार्ड स्तर पर तुरंत समाधान पाएं।
+                चित्तौड़गढ़ नगर परिषद के <strong>वार्ड संख्या 59</strong> के नागरिकों के लिए पारदर्शी, त्वरित एवं जवाबदेह नगर पालिका ई-सेवाएं। निर्वाचित वार्ड पार्षद <strong>श्री प्रमोद राजपुरोहित</strong> की सीधी निगरानी में अपनी समस्या दर्ज करें और त्वरित समाधान पाएं।
               </p>
             </div>
 
@@ -206,10 +206,10 @@ export default function CitizenOnboarding({ onComplete }) {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.86rem', fontWeight: 800, color: '#166534', marginBottom: 2 }}>
-                    सभी 60 वार्डों में सीधी निगरानी
+                    वार्ड संख्या 59 में सीधी निगरानी
                   </div>
                   <div style={{ fontSize: '0.78rem', color: '#64748b', lineHeight: 1.4 }}>
-                    सड़क, कचरा, स्ट्रीट लाइट, सीवरेज व पेयजल समस्याओं पर क्षेत्रीय बीट प्रभारी से समन्वय।
+                    सड़क, कचरा, स्ट्रीट लाइट, सीवरेज व पेयजल समस्याओं पर वार्ड पार्षद एवं नगर पालिका शाखाओं से सीधा समन्वय।
                   </div>
                 </div>
               </div>
@@ -449,105 +449,82 @@ export default function CitizenOnboarding({ onComplete }) {
                   <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#334155', marginBottom: 3, lineHeight: 1.3 }}>
                     वार्ड संख्या (Ward) <span style={{ color: '#dc2626' }}>*</span>
                   </label>
-                  <div style={{ position: 'relative' }}>
-                    <select
-                      value={wardNum}
-                      onChange={e => setWardNum(e.target.value)}
-                      className="devanagari-select"
-                      style={{
-                        width: '100%',
-                        cursor: 'pointer',
-                        paddingRight: '34px',
-                        appearance: 'none',
-                        WebkitAppearance: 'none'
-                      }}
-                      required
-                    >
-                      {CHITTORGARH_60_WARDS.map(w => (
-                        <option key={w.num} value={w.num}>
-                          वार्ड {w.num} — {w.councillor} ({w.party})
-                        </option>
-                      ))}
-                    </select>
-                    <MapPin size={15} color="#64748b" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
-                    <ChevronDown size={15} color="#64748b" style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+                  <div style={{
+                    padding: '9px 12px',
+                    borderRadius: 8,
+                    background: '#f8fafc',
+                    border: '1.5px solid #cbd5e1',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    fontSize: '0.88rem',
+                    fontWeight: 700,
+                    color: '#1e3a8a',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <MapPin size={16} color="#7c3aed" />
+                      <span>वार्ड संख्या 59 (चित्तौड़गढ़)</span>
+                    </div>
+                    <span style={{ fontSize: '0.72rem', background: '#dcfce7', color: '#15803d', padding: '2px 8px', borderRadius: 9999, fontWeight: 700 }}>
+                      निर्वाचित वार्ड ✓
+                    </span>
                   </div>
 
                   {/* Dynamic Ward Councillor (पार्षद प्रतिनिधि) Live Info Card */}
-                  {(() => {
-                    const currentWard = CHITTORGARH_60_WARDS.find(w => w.num === parseInt(wardNum, 10)) || CHITTORGARH_60_WARDS[23];
-                    const isBjp = currentWard.partyCode === 'bjp';
-                    const isInc = currentWard.partyCode === 'inc';
-                    const partyTheme = isBjp
-                      ? { bg: '#fff7ed', border: '#fdba74', accent: '#ea580c', tagBg: '#ffedd5', tagText: '#c2410c' }
-                      : isInc
-                      ? { bg: '#eff6ff', border: '#bfdbfe', accent: '#2563eb', tagBg: '#dbeafe', tagText: '#1e40af' }
-                      : { bg: '#faf5ff', border: '#e9d5ff', accent: '#9333ea', tagBg: '#f3e8ff', tagText: '#6b21a8' };
-
-                    return (
+                  <div style={{
+                    marginTop: 7,
+                    background: '#faf5ff',
+                    border: '1.5px solid #e9d5ff',
+                    borderLeft: '4px solid #7c3aed',
+                    borderRadius: 8,
+                    padding: '8px 10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: 8,
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
                       <div style={{
-                        marginTop: 7,
-                        background: partyTheme.bg,
-                        border: `1.5px solid ${partyTheme.border}`,
-                        borderLeft: `4px solid ${partyTheme.accent}`,
-                        borderRadius: 8,
-                        padding: '8px 10px',
+                        width: 32,
+                        height: 32,
+                        borderRadius: '50%',
+                        background: '#ffffff',
+                        color: '#7c3aed',
+                        border: '1.5px solid #e9d5ff',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: 8,
-                        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+                        justifyContent: 'center',
+                        fontWeight: 800,
+                        fontSize: '0.85rem',
+                        flexShrink: 0
                       }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
-                          <div style={{
-                            width: 32,
-                            height: 32,
-                            borderRadius: '50%',
-                            background: '#ffffff',
-                            color: partyTheme.accent,
-                            border: `1.5px solid ${partyTheme.border}`,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontWeight: 800,
-                            fontSize: '0.85rem',
-                            flexShrink: 0
-                          }}>
-                            {currentWard.councillor.charAt(0)}
-                          </div>
-                          <div style={{ minWidth: 0 }}>
-                            <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600 }}>
-                              वार्ड {currentWard.num} के निर्वाचित पार्षद:
-                            </div>
-                            <div style={{ fontSize: '0.86rem', fontWeight: 800, color: '#0f172a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                              {currentWard.isChairman ? `${currentWard.councillor} (सभापति)` : currentWard.isViceChairman ? `${currentWard.councillor} (उपसभापति)` : currentWard.councillor}
-                            </div>
-                          </div>
+                        प्र
+                      </div>
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600 }}>
+                          वार्ड 59 पार्षद प्रतिनिधि:
                         </div>
-
-                        <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                          <span style={{
-                            fontSize: '0.7rem',
-                            fontWeight: 700,
-                            padding: '2px 8px',
-                            borderRadius: 9999,
-                            background: partyTheme.tagBg,
-                            color: partyTheme.tagText,
-                            border: `1px solid ${partyTheme.border}`,
-                            display: 'inline-block'
-                          }}>
-                            {currentWard.party}
-                          </span>
-                          {currentWard.reservation && (
-                            <div style={{ fontSize: '0.62rem', color: '#64748b', marginTop: 2 }}>
-                              {currentWard.reservation.split(' ')[0]}
-                            </div>
-                          )}
+                        <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#0f172a' }}>
+                          श्री प्रमोद राजपुरोहित
                         </div>
                       </div>
-                    );
-                  })()}
+                    </div>
+                    <span style={{
+                      fontSize: '0.7rem',
+                      fontWeight: 800,
+                      padding: '2px 7px',
+                      borderRadius: 9999,
+                      background: '#f3e8ff',
+                      color: '#6b21a8',
+                      border: '1px solid #e9d5ff',
+                      flexShrink: 0
+                    }}>
+                      निर्दलीय
+                    </span>
+                  </div>
                 </div>
+
 
                 {/* 4-Digit MPIN for Security */}
                 <div style={{ marginBottom: 12 }}>

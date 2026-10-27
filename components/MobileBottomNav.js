@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/authContext';
 import {
-  Home, PlusCircle, ClipboardList, UserCheck,
-  Users, LogOut, FileText, CheckCircle
+  Home, PlusCircle, ClipboardList, Building2, MapPin, LogOut
 } from 'lucide-react';
 
 const MOBILE_NAV_CONFIG = {
@@ -14,14 +13,11 @@ const MOBILE_NAV_CONFIG = {
     { href: '/citizen/report',     label: 'समस्या दर्ज', sub: 'Report',      icon: PlusCircle },
     { href: '/citizen/complaints', label: 'मेरी शिकायतें', sub: 'Complaints',  icon: ClipboardList },
   ],
-  employee: [
-    { href: '/employee',         label: 'दैनिक हाजिरी', sub: 'Attendance', icon: UserCheck },
-    { href: '/employee/history', label: 'हाजिरी इतिहास', sub: 'History',    icon: ClipboardList },
-  ],
   parshad: [
-    { href: '/parshad',            label: 'वार्ड स्थिति', sub: 'Overview',   icon: Home },
+    { href: '/parshad',            label: 'वार्ड 59',    sub: 'Overview',   icon: Home },
     { href: '/parshad/complaints', label: 'शिकायतें',    sub: 'Complaints', icon: ClipboardList },
-    { href: '/parshad/employees',  label: 'सफाईकर्मी',    sub: 'Workers',    icon: Users },
+    { href: '/parshad/departments',label: 'विभाग डाटा',  sub: 'Depts',      icon: Building2 },
+    { href: '/parshad/areas',      label: 'वार्ड क्षेत्र',sub: 'Areas',      icon: MapPin },
   ],
 };
 

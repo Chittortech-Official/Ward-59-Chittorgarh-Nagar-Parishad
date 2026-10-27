@@ -18,8 +18,8 @@ const ALL_COMPLAINTS_DATA = {
     code: 'CTNP-2026-000125',
     category: 'कचरा सफाई (Garbage Clearance)',
     status: 'in_progress',
-    ward: 'वार्ड 24',
-    location: 'बस स्टैंड के पास, मुख्य सड़क तिराहा',
+    ward: 'वार्ड 59',
+    location: 'किला ढलान, मुख्य प्रवेश द्वार के पास',
     date: '01 अक्टू 2026, 09:30 AM',
     citizen: 'राजेश कुमार',
     citizenPhone: '98290-54321',
@@ -37,8 +37,8 @@ const ALL_COMPLAINTS_DATA = {
     code: 'CTNP-2026-000118',
     category: 'सड़क गड्ढा मरम्मत (Road Pothole)',
     status: 'assigned',
-    ward: 'वार्ड 24',
-    location: 'मुख्य बाजार सड़क, निकट क्लॉक टावर',
+    ward: 'वार्ड 59',
+    location: 'मीरा मार्ग, मुख्य तिराहा',
     date: '30 सितं 2026, 04:15 PM',
     citizen: 'महेश सोनी',
     citizenPhone: '98290-67890',
@@ -235,7 +235,7 @@ export default function ParshadComplaintDetailPage() {
         complaintCode: codeToUse,
         newStatus: selectedStatus,
         note: parshadMessage,
-        parshadName: 'श्रीमती कुसुम (पार्षद, वार्ड 24)',
+        parshadName: 'श्री प्रमोद राजपुरोहित (पार्षद, वार्ड 59)',
       });
 
       setComplaint(prev => ({
@@ -546,7 +546,7 @@ export default function ParshadComplaintDetailPage() {
                   पार्षद सीधी कार्रवाई एवं स्थिति अद्यतन
                 </div>
                 <div style={{ fontSize: '0.72rem', color: '#7e22ce' }}>
-                  श्रीमती कुसुम (पार्षद, वार्ड 24) • लाइव नागरिक संचार
+                  श्री प्रमोद राजपुरोहित (पार्षद, वार्ड 59) • लाइव नागरिक संचार
                 </div>
               </div>
             </div>

@@ -10,10 +10,8 @@ import {
 import Link from 'next/link';
 
 const ALL_ROLES = [
-  { email: 'citizen@demo.in',  label: 'नागरिक (Citizen)',        sub: 'राजेश कुमार · वार्ड 24 (Mobile & Desktop)',   icon: UserCircle, color: '#0284c7', role: 'citizen',     path: '/citizen' },
-  { email: 'employee@demo.in', label: 'कर्मचारी (Employee)',     sub: 'रमेश मीणा · स्वास्थ्य शाखा (Mobile Only)',   icon: Users,      color: '#16a34a', role: 'employee',    path: '/employee' },
-  { email: 'parshad@demo.in',  label: 'वार्ड पार्षद (Councillor)', sub: 'श्रीमती कुसुम (भाजपा) · वार्ड 24 (Mobile & Desktop)', icon: Briefcase, color: '#7c3aed', role: 'parshad', path: '/parshad' },
-  { email: 'chairman@demo.in', label: 'सभापति (Chairman)',       sub: 'श्री अनिल जी ईनाणी · सर्वोच्च नियंत्रण कक्ष',  icon: Crown,      color: '#d97706', role: 'chairman',   path: '/chairman' },
+  { email: 'citizen@demo.in',  label: 'नागरिक (Citizen)',          sub: 'राजेश कुमार · वार्ड 59 (Mobile & Desktop)',   icon: UserCircle, color: '#0284c7', role: 'citizen', path: '/citizen' },
+  { email: 'parshad@demo.in',  label: 'वार्ड पार्षद (Parshad)',      sub: 'श्री प्रमोद राजपुरोहित · वार्ड 59', icon: Briefcase,  color: '#7c3aed', role: 'parshad', path: '/parshad' },
 ];
 
 export default function RoleSwitcher() {

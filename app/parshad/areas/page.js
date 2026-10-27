@@ -1,10 +1,9 @@
 'use client';
 
 import DashboardShell from '@/components/DashboardShell';
-import ParshadNavTabs from '@/components/ParshadNavTabs';
 import { useAuth } from '@/lib/authContext';
 import {
-  MapPin, Users, CheckCircle, Clock,
+  MapPin, CheckCircle, Clock,
   ArrowRight, ShieldCheck, Phone, AlertCircle
 } from 'lucide-react';
 import Link from 'next/link';
@@ -12,51 +11,51 @@ import Link from 'next/link';
 const WARD_AREAS = [
   {
     id: 1,
-    name: 'भारत माता चौक एवं मुख्य बाजार',
-    type: 'व्यावसायिक क्षेत्र (Commercial Market)',
-    assignedWorkers: ['रमेश मीणा (सफाई जमादार)', 'सुनील कुमार (सफाईकर्मी)'],
-    workersPhone: '98290-44121',
-    cleanSchedule: 'प्रातः 07:00 AM से दोपहर 02:00 PM (दैनिक 2 बार)',
-    activeComplaints: 1,
+    name: 'किला ढलान एवं मुख्य प्रवेश मार्ग',
+    type: 'ऐतिहासिक धरोहर एवं पर्यटन संपर्क मार्ग',
+    assignedWorkers: ['किशन लाल (सफाई जमादार)', 'सुरेश कुमार (स्वच्छता कर्मी)'],
+    workersPhone: '98290-44101',
+    cleanSchedule: 'प्रातः 06:30 AM एवं दोपहर 02:00 PM (दैनिक 2 बार)',
+    activeComplaints: 0,
     status: 'सफाई पूर्ण ✓',
   },
   {
     id: 2,
-    name: 'बस स्टैंड परिसर एवं मुख्य तिराहा',
-    type: 'उच्च आवागमन क्षेत्र (High Transit Area)',
-    assignedWorkers: ['रमेश मीणा (सफाई जमादार)', 'लखन सिंह (अनुपस्थित)'],
-    workersPhone: '98290-44121',
-    cleanSchedule: 'प्रातः 06:30 AM एवं सायंकाल 04:00 PM',
-    activeComplaints: 1,
-    status: 'टिपर वाहन मौके पर कार्यरत',
+    name: 'मीरा मार्ग एवं मंदिर परिसर क्षेत्र',
+    type: 'धार्मिक एवं आवासीय क्षेत्र (Residential Zone)',
+    assignedWorkers: ['राजू लाल (स्वच्छता कर्मी)'],
+    workersPhone: '98290-44101',
+    cleanSchedule: 'प्रातः 07:00 AM से 11:30 AM',
+    activeComplaints: 0,
+    status: 'सफाई पूर्ण ✓',
   },
   {
     id: 3,
-    name: 'न्यू कॉलोनी (गली नं. 1, 2 व 3)',
-    type: 'आवासीय क्षेत्र (Residential Zone)',
-    assignedWorkers: ['गीता देवी (सफाईकर्मी)'],
-    workersPhone: '98290-44123',
-    cleanSchedule: 'प्रातः 07:30 AM से 11:30 AM',
-    activeComplaints: 1,
+    name: 'गांधी चौक एवं मुख्य बाजार तिराहा',
+    type: 'व्यापारिक व व्यावसायिक क्षेत्र (Commercial Area)',
+    assignedWorkers: ['किशन लाल (सफाई जमादार)', 'दिनेश मेघवाल (स्वच्छता कर्मी)'],
+    workersPhone: '98290-44101',
+    cleanSchedule: 'प्रातः 07:00 AM व सायंकाल 04:30 PM (कचरा टिपर वाहन)',
+    activeComplaints: 0,
     status: 'सफाई पूर्ण ✓',
   },
   {
     id: 4,
-    name: 'सब्जी मंडी चौक एवं स्टेशन रोड कॉर्नर',
-    type: 'मंडी व व्यापारिक क्षेत्र (Market & Stalls)',
-    assignedWorkers: ['मोहन लाल (सड़क/निर्माण श्रमिक)', 'सुनील कुमार (सफाईकर्मी)'],
-    workersPhone: '98290-44124',
-    cleanSchedule: 'दैनिक निरंतर सफाई व चूना छिड़काव',
+    name: 'भोई मोहल्ला एवं आंतरिक गलियां',
+    type: 'सघन आवासीय क्षेत्र (High Density Housing)',
+    assignedWorkers: ['शांति लाल (नाली सफाई दल)'],
+    workersPhone: '98290-44101',
+    cleanSchedule: 'दैनिक डीसिल्टिंग व चूना छिड़काव',
     activeComplaints: 0,
     status: 'सफाई पूर्ण ✓',
   },
   {
     id: 5,
-    name: 'कलेक्टर सर्किल व मुख्य चौराहा मार्ग',
-    type: 'प्रशासनिक व वीआईपी मार्ग (VIP Route)',
-    assignedWorkers: ['प्रिया शर्मा (विद्युत सहायक)', 'रमेश मीणा (जमादार)'],
-    workersPhone: '98290-44125',
-    cleanSchedule: 'प्रातः 07:00 AM नियमित निरीक्षण',
+    name: 'स्टेशन संपर्क मार्ग एवं तिराहा',
+    type: 'मुख्य आवागमन संपर्क मार्ग (Transit Route)',
+    assignedWorkers: ['मुकेश टेलर सहायक (विद्युत)', 'किशन लाल (जमादार)'],
+    workersPhone: '98290-44104',
+    cleanSchedule: 'प्रातः 07:30 AM स्ट्रीट लाइट व सफाई निरीक्षण',
     activeComplaints: 0,
     status: 'स्ट्रीट लाइट व मार्ग सत्यापित ✓',
   },
@@ -67,22 +66,26 @@ export default function ParshadAreasPage() {
 
   return (
     <DashboardShell requiredRole="parshad">
-      {/* 5-Tab Navigation Bar */}
-      <ParshadNavTabs />
-
       {/* Header */}
-      <div style={{ marginBottom: 16 }}>
+      <div style={{
+        background: '#ffffff',
+        border: '1px solid #e2e8f0',
+        borderRadius: 14,
+        padding: '16px 20px',
+        marginBottom: 16,
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+      }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
           <div>
-            <h1 style={{ fontSize: '1.35rem', color: '#1e3a8a', marginBottom: 2, fontWeight: 800 }}>
-              वार्ड 24 — प्रमुख क्षेत्र एवं बीट आवंटन
+            <h1 style={{ fontSize: '1.4rem', color: '#1e3a8a', marginBottom: 2, fontWeight: 800 }}>
+              वार्ड 59 — प्रमुख क्षेत्र एवं मोहल्ले
             </h1>
-            <p style={{ fontSize: '0.8125rem', color: '#64748b', margin: 0 }}>
-              वार्ड के समस्त 5 प्रमुख क्षेत्रों की सफाई व्यवस्था, बीट कर्मचारी आवंटन व नियमित समय-सारिणी
+            <p style={{ fontSize: '0.825rem', color: '#64748b', margin: 0 }}>
+              वार्ड 59 के 5 प्रमुख क्षेत्रों में स्वच्छता कार्यक्रम व बीट स्टाफ विवरण
             </p>
           </div>
-          <span className="badge badge-parshad" style={{ fontSize: '0.75rem', padding: '4px 12px' }}>
-            5 मुख्य बीट क्षेत्र
+          <span className="badge badge-parshad" style={{ fontSize: '0.78rem', padding: '5px 14px' }}>
+            5 प्रमुख बीट क्षेत्र
           </span>
         </div>
       </div>
@@ -142,7 +145,7 @@ export default function ParshadAreasPage() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 10, background: '#f8fafc', padding: '12px 14px', borderRadius: 8, fontSize: '0.8rem' }}>
               <div>
-                <span style={{ color: '#64748b' }}>आवंटित फील्ड कर्मी:</span>
+                <span style={{ color: '#64748b' }}>बीट फील्ड टीम:</span>
                 <div style={{ fontWeight: 700, color: '#0f172a', marginTop: 2 }}>
                   {area.assignedWorkers.join(', ')}
                 </div>
@@ -178,7 +181,7 @@ export default function ParshadAreasPage() {
                     gap: 4
                   }}
                 >
-                  <Phone size={12} /> बीट कर्मी को कॉल
+                  <Phone size={12} /> बीट प्रभारी कॉल
                 </a>
               </div>
             </div>
